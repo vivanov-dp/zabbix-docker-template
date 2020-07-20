@@ -1,7 +1,7 @@
 # zabbix-docker-template
 Zabbix 5.x docker template for Zabbix Agent ver.1, with containers and images LLD
 
-**Additional dependencies:**: `curl`
+**Additional dependencies:** `curl`
 
 ## Setup
 - put `docker_template.conf` in the Zabbix Agent `conf.d` directory (usually `/etc/zabbix/zabbix_agentd.d/`) on the hosts you wish to monitor
@@ -10,7 +10,7 @@ Zabbix 5.x docker template for Zabbix Agent ver.1, with containers and images LL
     `sudo usermod -a -G docker zabbix`
     
 - restart Zabbix Agent
-- import `docker_tamplate_agent1.xml` into Zabbix templates
+- import `docker_template_agent1.xml` into Zabbix templates
     
     This will create a template named **Template App Docker - Agent 1**
 
@@ -20,6 +20,8 @@ Zabbix 5.x docker template for Zabbix Agent ver.1, with containers and images LL
     `{$DOCKER.SOCKET}` has to point to docker's unix socket (default is `/var/run/docker.sock`)
 
 ## Details
+The template will add `Docker overview` host screen to monitored hosts, that contains all data, including discovered containers and their stats.
+
 This template uses Docker's API to fetch data and accesses it locally via docker's UNIX socket. 
 
 By changing the items in the `docker_template.conf` file it is possible to set it up to access the API via http - example items are provided as a comment in the file - if you use them, the `{DOCKER.SOCKET}` macro should contain the name of the host to contact.
