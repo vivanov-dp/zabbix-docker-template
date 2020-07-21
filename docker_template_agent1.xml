@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2020-07-20T10:52:13Z</date>
+    <date>2020-07-21T09:34:25Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -857,6 +857,27 @@ return JSON.stringify(data);</params>
                             </application_prototypes>
                         </item_prototype>
                         <item_prototype>
+                            <name>Memory Cache</name>
+                            <type>DEPENDENT</type>
+                            <key>docker.container.mem.cache[{#ID}]</key>
+                            <delay>0</delay>
+                            <units>B</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Docker Container {#NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <params>$.memory_stats.stats.cache</params>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>docker.containers.stats[{$DOCKER.SOCKET},{#ID}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
                             <name>Memory Total</name>
                             <type>DEPENDENT</type>
                             <key>docker.container.mem.total[{#ID}]</key>
@@ -911,8 +932,20 @@ return JSON.stringify(data);</params>
                         </item_prototype>
                         <item_prototype>
                             <name>Memory Used</name>
-                            <type>DEPENDENT</type>
+                            <type>CALCULATED</type>
                             <key>docker.container.mem.used[{#ID}]</key>
+                            <units>B</units>
+                            <params>last(&quot;docker.container.mem.used_cache[{#ID}]&quot;) - last(&quot;docker.container.mem.cache[{#ID}]&quot;)</params>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>Docker Container {#NAME}</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Memory Used With Cache</name>
+                            <type>DEPENDENT</type>
+                            <key>docker.container.mem.used_cache[{#ID}]</key>
                             <delay>0</delay>
                             <units>B</units>
                             <application_prototypes>
