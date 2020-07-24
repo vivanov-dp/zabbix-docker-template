@@ -2,7 +2,7 @@
 Zabbix 5.x docker template for Zabbix Agent ver.1, with containers and images LLD
 _This will probably run on older version of Zabbix too, but is only tested on 5.0._
 
-This doesn't use any external scripts or modules to collect data, the only dependencies are curl and read access to docker's API.
+This doesn't use any external scripts or modules to collect data, the only dependencies are `curl` and read access to docker's API.
 
 *Intended setup:* Running Zabbix Agent alongside Docker on the same host, access API by UNIX socket.
 
