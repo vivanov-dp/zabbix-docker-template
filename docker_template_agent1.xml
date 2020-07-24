@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2020-07-21T09:34:25Z</date>
+    <date>2020-07-23T07:41:34Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -550,6 +550,7 @@ return dockerVersion +
                             </condition>
                         </conditions>
                     </filter>
+                    <lifetime>{$DOCKER.IMAGE.KEEP}</lifetime>
                     <description>Discovery for images metrics</description>
                     <item_prototypes>
                         <item_prototype>
@@ -646,7 +647,7 @@ return JSON.stringify(data);</params>
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>14d</lifetime>
+                    <lifetime>{$DOCKER.CONTAINER.KEEP}</lifetime>
                     <description>Discovery for containers metrics</description>
                     <item_prototypes>
                         <item_prototype>
@@ -1468,9 +1469,19 @@ return JSON.stringify(data);</params>
             </discovery_rules>
             <macros>
                 <macro>
+                    <macro>{$DOCKER.CONTAINER.KEEP}</macro>
+                    <value>14d</value>
+                    <description>Time to keep the data about old containers that are no longer discovered on the host. Min: 1h</description>
+                </macro>
+                <macro>
                     <macro>{$DOCKER.CPU.USAGE_HIGH}</macro>
                     <value>80</value>
                     <description>Percent of container CPU usage to trigger warning</description>
+                </macro>
+                <macro>
+                    <macro>{$DOCKER.IMAGE.KEEP}</macro>
+                    <value>14d</value>
+                    <description>Time to keep the data about old images that are no longer discovered on the host. Min: 1h</description>
                 </macro>
                 <macro>
                     <macro>{$DOCKER.LLD.FILTER.CONTAINER.MATCHES}</macro>
