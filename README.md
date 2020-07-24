@@ -22,7 +22,12 @@ This doesn't use any external scripts or modules to collect data, the only depen
     `{$DOCKER.SOCKET}` has to point to docker's unix socket (default is `/var/run/docker.sock`)
 
 ## Details
-The `Docker overview` host screen will be added to monitored hosts - it contains all data, including discovered containers and their stats.
+The `Docker overview` host screen will be added to monitored hosts - it contains all data, including discovered containers and their stats:
+
+![Alt text](/../screenshots/screens/docker_images.png?raw=true "General Docker Data")
+![Alt text](/../screenshots/screens/containers_networking.png?raw=true "Containers Networking")
+![Alt text](/../screenshots/screens/containers_io_cpu_mem.png?raw=true "Containers Size, IO rate, CPU, Memory")
+
 
 This template uses Docker's API to fetch data and accesses it locally via docker's UNIX socket. 
 
