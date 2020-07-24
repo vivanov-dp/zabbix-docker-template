@@ -2,18 +2,15 @@
 Zabbix 5.x docker template for Zabbix Agent ver.1, with containers and images LLD
 _This will probably run on older version of Zabbix too, but is only tested on 5.0._
 
+This doesn't use any external scripts or modules to collect data, the only dependencies are curl and read access to docker's API.
+
 *Intended setup:* Running Zabbix Agent alongside Docker on the same host, access API by UNIX socket.
 
 *Possible:* Run Zabbix Agent separately and point the template to docker host, access API by HTTP.
 
-**Dependencies:** `curl`
-
 ## Setup
-- put `docker_template.conf` in the Zabbix Agent `conf.d` directory (usually `/etc/zabbix/zabbix_agentd.d/`) on the hosts you wish to monitor
-- For Docker API access make docker's UNIX socket readable to the user the Zabbix Agent runs as. For example add user `zabbix` to the `docker` group: 
-    
-    `sudo usermod -a -G docker zabbix`
-    
+- `cp docker_template.conf /etc/zabbix/zabbix_agentd.d/`
+- `sudo usermod -a -G docker zabbix`
 - restart Zabbix Agent
 - import `docker_template_agent1.xml` into Zabbix templates
     
