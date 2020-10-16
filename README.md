@@ -23,7 +23,7 @@ This doesn't use any external scripts or modules to collect data, the only depen
 
     `{$DOCKER.SOCKET}` has to point to docker's unix socket (default is `/var/run/docker.sock`)
     
-( NOTE: If you are having problems with items staying in the unsupported state and your docker host is runing with SELinux kernel, you might need to allow access for curl to docker's socket. See: #3, solution: https://github.com/vivanov-dp/zabbix-docker-template/issues/3#issuecomment-709324778 )
+( NOTE: If you are having problems with items staying in the unsupported state and your docker host is runing with SELinux kernel, you might need to allow access for curl to docker's socket. See: https://github.com/vivanov-dp/zabbix-docker-template/issues/3, solution: https://github.com/vivanov-dp/zabbix-docker-template/issues/3#issuecomment-709324778 )
 
 ## Details
 The `Docker overview` host screen will be added to monitored hosts - it contains all data, including discovered containers and their stats:
